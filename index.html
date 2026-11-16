@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Happy Birthday, Shristi 💗</title>
+  
+  <!-- Open Graph Meta Tags for rich link previews in WhatsApp / Telegram -->
+  <meta property="og:title" content="Happy Birthday, Shristi 💗">
+  <meta property="og:description" content="A special little universe made with love, by Shubham. Tap to unwrap your birthday surprise! ✨">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#250f2b">
+  
+  <!-- Favicon (Heart Emoji SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-deep: #140818;
+      --bg-mid: #250f2b;
+      --bg-warm: #361633;
+      --rose: #e8a3ab;
+      --rose-deep: #c96b7a;
+      --gold: #d9b26a;
+      --gold-soft: #f0d9a8;
+      --cream: #faf1e8;
+      --pink-soft: #f5cdd6;
+      --shadow: rgba(10, 3, 14, 0.55);
+      --card-front: linear-gradient(155deg, #3a1b3c, #2a1030 65%);
+      --card-back: linear-gradient(155deg, #4a2340, #2e1330 75%);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(240, 217, 168, 0.22);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 20% -10%, #4a2148 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 10%, #3d1a44 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 45%, var(--bg-warm) 100%);
+      font-family: 'Quicksand', sans-serif;
+      color: var(--cream);
+      overflow-x: hidden;
+      position: relative;
+    }
+    body.locked { overflow: hidden; height: 100vh; }
+
+    #bg-canvas, #fx-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+    }
+    #bg-canvas { z-index: 0; }
+    #fx-canvas { z-index: 900; }
+
+    .love-watermark {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.045;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Dancing Script', cursive;
+      color: var(--gold-soft);
+      font-size: clamp(3.5rem, 13vw, 13rem);
+      white-space: nowrap;
+      transform: rotate(-7deg);
+      user-select: none;
+    }
+    .love-watermark .heart {
+      display: inline-block;
+      margin: 0 0.15em;
+      color: var(--rose);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75em;
+    }
+
+    /* ---------- MUSIC FLOATING WIDGET ---------- */
+    .music-btn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 800;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(43, 19, 48, 0.85);
+      border: 1px solid var(--gold-soft);
+      color: var(--gold-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .music-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(217,178,106,0.35);
+    }
+    .music-btn.playing {
+      background: linear-gradient(135deg, rgba(201,107,122,0.8), rgba(217,178,106,0.8));
+      color: #200a26;
+      animation: musicPulse 2s infinite ease-in-out;
+    }
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232,163,171,0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(232,163,171,0); }
+    }
+
+    /* ---------- INTRO GIFT OVERLAY ---------- */
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: radial-gradient(ellipse at center, #3d1a44, #140818 80%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      padding: 24px;
+    }
+    #intro-overlay.closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .intro-eyebrow {
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: var(--gold-soft);
+      opacity: 0.9;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .gift-box {
+      font-size: clamp(5.5rem, 16vw, 7.5rem);
+      cursor: pointer;
+      animation: giftBounce 1.8s ease-in-out infinite;
+      filter: drop-shadow(0 12px 35px rgba(217, 178, 106, 0.45));
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+      user-select: none;
+    }
+    .gift-box.opened {
+      transform: scale(2.6) rotate(15deg);
+      opacity: 0;
+    }
+    @keyframes giftBounce {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-16px) rotate(3deg); }
+    }
+    .intro-caption {
+      margin-top: 24px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--pink-soft);
+      font-size: 1.15rem;
+      max-width: 340px;
+      line-height: 1.5;
+    }
+    .intro-sub {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--gold-soft);
+      opacity: 0.75;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+    .eyebrow {
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: var(--gold-soft);
+      opacity: 0.9;
+      margin: 0 0 14px;
+      font-weight: 600;
+    }
+    .name-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3.6rem, 12vw, 7rem);
+      margin: 0;
+      line-height: 1.05;
+      background: linear-gradient(90deg, var(--gold-soft), var(--rose) 45%, var(--gold) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 6px 28px rgba(217, 178, 106, 0.3));
+      animation: nameFloat 5s ease-in-out infinite;
+    }
+    @keyframes nameFloat {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    .from {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--pink-soft);
+      margin: 16px 0 40px;
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+    }
+    .countdown {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      perspective: 800px;
+    }
+    .time-block {
+      background: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(240, 217, 168, 0.28);
+      border-radius: 18px;
+      padding: 16px 14px;
+      min-width: 80px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.1);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .time-block:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-soft);
+    }
+    .time-block span {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+      color: var(--gold-soft);
+      text-shadow: 0 4px 18px rgba(217, 178, 106, 0.4);
+    }
+    .time-block label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink-soft);
+      opacity: 0.85;
+      font-weight: 600;
+    }
+    .countdown-caption {
+      margin-top: 20px;
+      font-size: 0.92rem;
+      color: var(--pink-soft);
+      opacity: 0.85;
+      letter-spacing: 0.04em;
+    }
+    .birthday-live-banner {
+      display: none;
+      background: linear-gradient(135deg, rgba(201,107,122,0.35), rgba(217,178,106,0.35));
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 22px 30px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.5), 0 0 35px rgba(217,178,106,0.25);
+      animation: popBanner 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .birthday-live-banner h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      margin: 0 0 8px;
+      color: var(--gold-soft);
+      text-shadow: 0 4px 20px rgba(217,178,106,0.4);
+    }
+    .birthday-live-banner p {
+      font-size: 1.1rem;
+      color: var(--cream);
+      margin: 0 0 16px;
+    }
+    .birthday-live-banner button {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      background: linear-gradient(90deg, var(--rose-deep), var(--gold));
+      border: none;
+      border-radius: 999px;
+      color: #200a26;
+      padding: 11px 26px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(201,107,122,0.4);
+      transition: transform 0.25s ease;
+    }
+    .birthday-live-banner button:hover {
+      transform: scale(1.05);
+    }
+
+    .scroll-hint {
+      margin-top: 50px;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      color: var(--gold-soft);
+      opacity: 0.7;
+      animation: bounce 2.2s ease-in-out infinite;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(10px); opacity: 1; }
+    }
+
+    /* ---------- SECTION HEADERS ---------- */
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+      margin: 0 0 8px;
+      color: var(--cream);
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--pink-soft);
+      opacity: 0.8;
+      margin: 0 auto 42px;
+      font-size: 0.96rem;
+      letter-spacing: 0.03em;
+      max-width: 580px;
+      padding: 0 16px;
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline-section {
+      position: relative;
+      z-index: 2;
+      padding: 70px 0 30px;
+    }
+    .timeline-scroll {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      padding: 14px 6vw 36px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent;
+    }
+    .timeline-scroll::-webkit-scrollbar { height: 6px; }
+    .timeline-scroll::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px;
+    }
+    .timeline-item {
+      scroll-snap-align: center;
+      flex: 0 0 clamp(260px, 68vw, 300px);
+      background: var(--card-back);
+      border-radius: 18px;
+      border: 1px solid var(--glass-border);
+      padding: 16px;
+      box-shadow: 0 14px 32px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .timeline-item:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .timeline-photo {
+      width: 100%;
+      height: 165px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: rgba(0,0,0,0.25);
+    }
+    .timeline-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .timeline-item:hover .timeline-photo img {
+      transform: scale(1.05);
+    }
+    .timeline-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      opacity: 0.9;
+      font-weight: 700;
+    }
+    .timeline-item h4 {
+      font-family: 'Playfair Display', serif;
+      margin: 6px 0 8px;
+      font-size: 1.05rem;
+      color: var(--cream);
+      line-height: 1.35;
+    }
+    .timeline-item p {
+      font-size: 0.83rem;
+      opacity: 0.82;
+      line-height: 1.55;
+      margin: 0 0 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .timeline-read-btn {
+      margin-top: auto;
+      padding: 8px 14px;
+      background: rgba(201,107,122,0.2);
+      border: 1px solid rgba(240,217,168,0.3);
+      border-radius: 999px;
+      color: var(--gold-soft);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .timeline-item:hover .timeline-read-btn {
+      background: linear-gradient(90deg, var(--rose-deep), var(--gold));
+      color: #200a26;
+      border-color: transparent;
+    }
+
+    /* ---------- STORY MODAL ---------- */
+    .story-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      background: rgba(12, 5, 16, 0.82);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .story-modal.open {
+      display: flex;
+      animation: modalFadeIn 0.35s ease;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .story-modal-card {
+      background: linear-gradient(145deg, #381a3d, #220c28);
+      border: 1px solid rgba(240, 217, 168, 0.35);
+      border-radius: 24px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.65), 0 0 35px rgba(217,178,106,0.15);
+    }
+    .story-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--cream);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .story-modal-close:hover {
+      background: var(--rose-deep);
+      transform: scale(1.08);
+    }
+    .story-modal-img {
+      width: 100%;
+      max-height: 360px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .story-modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .story-modal-date {
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+    .story-modal-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--cream);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      margin: 8px 0 14px;
+      line-height: 1.3;
+    }
+    .story-modal-body {
+      font-size: 0.98rem;
+      line-height: 1.85;
+      color: var(--cream);
+      opacity: 0.95;
+      white-space: pre-line;
+    }
+
+    /* ---------- 3D MEMORY CAROUSEL ---------- */
+    .memory-section {
+      position: relative;
+      z-index: 2;
+      padding: 40px 20px 80px;
+      overflow: hidden;
+    }
+    .memory-stage {
+      position: relative;
+      max-width: 980px;
+      height: 420px;
+      margin: 20px auto 16px;
+      perspective: 1400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .memory-card-3d {
+      position: absolute;
+      width: min(75vw, 360px);
+      height: 340px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(240, 217, 168, 0.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, filter 0.5s ease;
+      background: #250f2b;
+      cursor: pointer;
+    }
+    .memory-card-3d img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .memory-card-3d[data-active="true"] {
+      z-index: 10;
+      border-color: var(--gold);
+      box-shadow: 0 25px 65px rgba(0,0,0,0.6), 0 0 35px rgba(217,178,106,0.35);
+      filter: brightness(1.05);
+    }
+    .memory-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 25;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-soft);
+      background: rgba(43, 19, 48, 0.85);
+      color: var(--gold-soft);
+      font-size: 1.6rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .memory-nav:hover {
+      background: linear-gradient(90deg, var(--rose-deep), var(--gold));
+      color: #200a26;
+      transform: translateY(-50%) scale(1.1);
+    }
+    .memory-nav.prev { left: max(2%, 10px); }
+    .memory-nav.next { right: max(2%, 10px); }
+
+    .memory-thumbs {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      overflow-x: auto;
+      padding: 12px 10px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .memory-thumb {
+      width: 64px;
+      height: 48px;
+      flex: 0 0 64px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(240, 217, 168, 0.3);
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+    .memory-thumb.active {
+      opacity: 1;
+      border-color: var(--gold);
+      transform: scale(1.1);
+      box-shadow: 0 0 12px rgba(217,178,106,0.5);
+    }
+    .memory-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---------- SURPRISES & QUESTIONS (CARDS GRID) ---------- */
+    .cards-section {
+      position: relative;
+      z-index: 2;
+      padding: 60px 20px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      perspective: 1600px;
+    }
+    .card {
+      position: relative;
+      height: 330px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+    .card-inner {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 20px;
+    }
+    .card.open .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 16px 36px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+      border: 1px solid rgba(240, 217, 168, 0.22);
+    }
+    .card-front {
+      background: var(--card-front);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .card:hover .card-front {
+      border-color: var(--gold-soft);
+      transform: translateY(-4px);
+    }
+    .card-front .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--gold-soft);
+      opacity: 0.65;
+      margin-bottom: 8px;
+    }
+    .card-front .ribbon {
+      font-size: 2.3rem;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    }
+    .card-front .tap {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pink-soft);
+      opacity: 0.8;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    .card-front .kind-tag {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      opacity: 0.7;
+      font-weight: 700;
+    }
+
+    .card-back {
+      background: var(--card-back);
+      transform: rotateY(180deg);
+      overflow-y: auto;
+      justify-content: flex-start;
+      padding-top: 26px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent;
+    }
+    .card-back::-webkit-scrollbar { width: 4px; }
+    .card-back::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+    .card-back h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin: 0 0 10px;
+      color: var(--gold-soft);
+    }
+    .card-back p {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--cream);
+      opacity: 0.95;
+      margin: 0 0 10px;
+    }
+
+    /* Card Riddle Input */
+    .riddle-input-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      width: 100%;
+    }
+    .riddle-input-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(240, 217, 168, 0.35);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cream);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.85rem;
+    }
+    .riddle-input-row input:focus {
+      outline: 2px solid var(--gold);
+    }
+    .riddle-input-row button {
+      padding: 9px 16px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(90deg, var(--rose-deep), var(--gold));
+      color: #200a26;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .riddle-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      justify-content: center;
+    }
+    .riddle-hint-btn, .riddle-reveal-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(240,217,168,0.25);
+      border-radius: 999px;
+      padding: 4px 10px;
+      color: var(--gold-soft);
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+    .riddle-hint {
+      font-size: 0.78rem;
+      color: var(--pink-soft);
+      margin-top: 8px;
+      font-style: italic;
+      min-height: 1.2em;
+    }
+    .card-feedback {
+      font-size: 0.82rem;
+      color: var(--gold-soft);
+      margin-top: 8px;
+      font-weight: 600;
+      display: none;
+    }
+    .card-feedback.show {
+      display: block;
+      animation: popIn 0.3s ease;
+    }
+
+    /* Card MCQ */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .quiz-options button {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      background: rgba(250, 241, 232, 0.07);
+      border: 1px solid rgba(240, 217, 168, 0.35);
+      color: var(--cream);
+      padding: 9px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+    }
+    .quiz-options button:hover {
+      background: rgba(217, 178, 106, 0.25);
+      transform: translateX(3px);
+    }
+    .quiz-options button.correct {
+      background: linear-gradient(90deg, var(--rose-deep), var(--gold));
+      color: #200a26;
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    /* Card Photo */
+    .card-photo-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .card-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---------- LOVE LETTERS ---------- */
+    .letters-section {
+      position: relative;
+      z-index: 2;
+      padding: 50px 20px 90px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 50px 32px;
+      margin-top: 24px;
+      align-items: start;
+    }
+    .letter-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .envelope {
+      width: 100%;
+      max-width: 320px;
+      height: 200px;
+      position: relative;
+      perspective: 1000px;
+      cursor: pointer;
+      animation: envelopeFloat 3.8s ease-in-out infinite;
+      transition: height 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .letter-wrap:nth-child(2) .envelope { animation-delay: 0.6s; }
+    .letter-wrap:nth-child(3) .envelope { animation-delay: 1.2s; }
+    @keyframes envelopeFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .envelope.open {
+      height: 380px;
+      animation: none;
+    }
+    .envelope-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 45px;
+      height: 155px;
+      background: linear-gradient(160deg, #3a1b3c, #260f2c);
+      border-radius: 12px;
+      box-shadow: 0 16px 36px var(--shadow);
+      border: 1px solid rgba(240, 217, 168, 0.28);
+      z-index: 1;
+    }
+    .wax-seal {
+      position: absolute;
+      left: 50%;
+      top: 38px;
+      transform: translate(-50%, 0);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--rose), var(--rose-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+      z-index: 5;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .envelope.open .wax-seal {
+      opacity: 0;
+      transform: translate(-50%, -10px) scale(0.6);
+      pointer-events: none;
+    }
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background: linear-gradient(160deg, #4a2340, #341a3a);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      backface-visibility: hidden;
+      z-index: 4;
+    }
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+    .letter-paper {
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      top: 150px;
+      height: 0;
+      background: linear-gradient(180deg, #faf1e8, #f5e8db);
+      color: #240c26;
+      border-radius: 8px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+      transform-origin: top center;
+      transform: rotateX(-55deg) scaleY(0.6);
+      opacity: 0;
+      transition: height 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
+                  top 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
+                  padding 0.85s ease 0.25s,
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.28s,
+                  opacity 0.5s ease 0.3s;
+      z-index: 2;
+      padding: 0 16px;
+      overflow: hidden;
+    }
+    .envelope.open .letter-paper {
+      height: 310px;
+      top: 10px;
+      padding: 20px 18px;
+      overflow-y: auto;
+      transform: rotateX(0deg) scaleY(1);
+      opacity: 1;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rose-deep) transparent;
+    }
+    .letter-paper::-webkit-scrollbar { width: 4px; }
+    .letter-paper::-webkit-scrollbar-thumb { background: var(--rose-deep); border-radius: 4px; }
+    .letter-paper h4 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
+      margin: 0 0 10px;
+      color: var(--rose-deep);
+      line-height: 1.2;
+    }
+    .letter-paper p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin: 0 0 10px;
+      color: #280d2c;
+    }
+    .letter-paper .sign {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.35rem;
+      color: var(--rose-deep);
+      text-align: right;
+      margin-top: 12px;
+    }
+    .envelope-label {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--gold-soft);
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    /* ---------- FINALE ---------- */
+    .finale {
+      position: relative;
+      z-index: 2;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 24px;
+    }
+    .finale h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      background: linear-gradient(90deg, var(--gold-soft), var(--rose));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 0 0 16px;
+    }
+    .finale p {
+      max-width: 580px;
+      color: var(--pink-soft);
+      opacity: 0.92;
+      line-height: 1.8;
+      font-size: 1.08rem;
+    }
+    .finale button {
+      margin-top: 32px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      background: linear-gradient(90deg, var(--rose-deep), var(--gold));
+      border: none;
+      color: #200a26;
+      padding: 15px 42px;
+      border-radius: 999px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      box-shadow: 0 14px 35px rgba(201, 107, 122, 0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .finale button:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 18px 45px rgba(217, 178, 106, 0.55);
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 34px 20px;
+      font-size: 0.8rem;
+      color: var(--pink-soft);
+      opacity: 0.65;
+      letter-spacing: 0.08em;
+    }
+
+    /* ---------- UNIVERSAL LIGHTBOX ---------- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(8, 3, 11, 0.92);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      cursor: pointer;
+    }
+    .lightbox.open {
+      display: flex;
+      animation: modalFadeIn 0.3s ease;
+    }
+    .lightbox img {
+      max-width: min(92vw, 900px);
+      max-height: 85vh;
+      border-radius: 16px;
+      border: 2px solid var(--gold-soft);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      object-fit: contain;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: 80px; }
+      .countdown { gap: 8px; }
+      .time-block { min-width: 68px; padding: 12px 8px; border-radius: 14px; }
+      .memory-stage { height: 360px; }
+      .memory-card-3d { height: 280px; }
+      .envelope.open { height: 350px; }
+      .envelope.open .letter-paper { height: 280px; }
+    }
+  </style>
+</head>
+<body class="locked">
+
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="fx-canvas"></canvas>
+  <div class="love-watermark" aria-hidden="true"><span>Shristi</span><span class="heart">♥</span><span>Shubham</span></div>
+
+  <!-- Music toggle button -->
+  <button id="musicBtn" class="music-btn" title="Toggle romantic music" aria-label="Toggle romantic music">🎵</button>
+
+  <!-- INTRO GIFT OVERLAY -->
+  <div id="intro-overlay">
+    <p class="intro-eyebrow">psst… Shristi 💗</p>
+    <div class="gift-box" id="giftBox">🎁</div>
+    <p class="intro-caption">There's something waiting for you inside.</p>
+    <p class="intro-sub">tap the gift to begin ✨</p>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <p class="eyebrow">A little surprise for</p>
+    <h1 class="name-script">Shristi</h1>
+    <p class="from">— made with love, by Shubham 🤍</p>
+    
+    <div class="countdown" id="countdown">
+      <div class="time-block"><span id="d">00</span><label>days</label></div>
+      <div class="time-block"><span id="h">00</span><label>hours</label></div>
+      <div class="time-block"><span id="m">00</span><label>mins</label></div>
+      <div class="time-block"><span id="s">00</span><label>secs</label></div>
+    </div>
+    <p class="countdown-caption" id="countdownCaption">until your birthday · 17 November 2026</p>
+
+    <!-- LIVE BIRTHDAY CELEBRATION BANNER (activated on birthday) -->
+    <div id="birthdayBanner" class="birthday-live-banner">
+      <h2>🎉 Happy Birthday, Shristi! 🎂💗</h2>
+      <p>Today is all about celebrating the most beautiful person in my life! ✨</p>
+      <button id="burstBirthdayBtn" type="button">Pop the Celebrations! 🎊</button>
+    </div>
+
+    <p class="scroll-hint">scroll down, your story awaits ↓</p>
+  </section>
+
+  <!-- SECTION 1: TIMELINE MOMENTS -->
+  <section class="timeline-section">
+    <h2 class="section-title">The Day It Started</h2>
+    <p class="section-sub">every chapter, every kiss, every crazy little memory with you ✨</p>
+    
+    <div class="timeline-scroll" id="timelineScroll">
+      <!-- Moment 1 -->
+      <article class="timeline-item" data-index="0">
+        <div class="timeline-photo"><img src="./assets/img_2.jpg" alt="The Day It Started" loading="lazy"></div>
+        <div class="timeline-date">The Day It Started</div>
+        <h4>Our Beautiful Story Began 🤍✨</h4>
+        <p>From our first day to our first kiss, every little moment felt like the beginning of something beautifully ours 🤍✨</p>
+        <button class="timeline-read-btn" type="button">Open Full Story 📖</button>
+      </article>
+
+      <!-- Moment 2 -->
+      <article class="timeline-item" data-index="1">
+        <div class="timeline-photo"><img src="./assets/img_3.jpg" alt="From Sober to That Kiss" loading="lazy"></div>
+        <div class="timeline-date">From Sober to That Kiss</div>
+        <h4>Sober, Kissed & Unforgettable 😭😘❤️</h4>
+        <p>You getting sober in front of me for the first time was already an experience 😂❤️ But that kiss in the auto after that? Damn… what an experience 😭😘 I definitely want more cute, crazy, unforgettable moments with you 🥹❤️✨</p>
+        <button class="timeline-read-btn" type="button">Open Full Story 📖</button>
+      </article>
+
+      <!-- Moment 3 -->
+      <article class="timeline-item" data-index="2">
+        <div class="timeline-photo"><img src="./assets/img_4.jpg" alt="Somewhere We Went" loading="lazy"></div>
+        <div class="timeline-date">Somewhere We Went</div>
+        <h4>Our First Hotel Experience 🥹❤️✨</h4>
+        <p>You taking care of my skincare was already such a sweet little moment 🥹❤️ And our first hotel experience? Honestly, it was absolutely amazing 😭✨ Something I know I’ll never forget. Everything we did and every moment we shared there made it so special 🫶🥰 What a beautiful and unforgettable experience it was! ❤️✨</p>
+        <button class="timeline-read-btn" type="button">Open Full Story 📖</button>
+      </article>
+
+      <!-- Moment 4 -->
+      <article class="timeline-item" data-index="3">
+        <div class="timeline-photo"><img src="./assets/img_5.jpg" alt="Made Special by Your Hands" loading="lazy"></div>
+        <div class="timeline-date">Made Special by Your Hands</div>
+        <h4>My First Sushi & Dimsum 🍣🥟</h4>
+        <p>My first sushi and my first dimsum were already such an amazing experience 🥹🥟🍣 But you made them even more special by feeding me with your own hands 😭❤️ Honestly, being fed by you is one of my favorite things ever 🫶✨ It was my first time trying them, and you made the whole moment so cute and unforgettable… aaye hayeee 🥹💕</p>
+        <button class="timeline-read-btn" type="button">Open Full Story 📖</button>
+      </article>
+
+      <!-- Moment 5 -->
+      <article class="timeline-item" data-index="4">
+        <div class="timeline-photo"><img src="./assets/img_1.jpg" alt="Right Now" loading="lazy"></div>
+        <div class="timeline-date">Right Now & Always</div>
+        <h4>Today: Still Choosing You 🌹💖</h4>
+        <p>Right now, is exact pal mein, bas ek hi cheez dil mein hai, tum. 🥹 Pata nahi kaise, but tumhare saath har din pichle din se zyada beautiful lagta hai. Tumhari hasi, tumhari chhoti-chhoti baatein, aur wo random moments jahan hum bas saath hote hain, wahi meri favourite jagah ban gayi hai. 🌷</p>
+        <button class="timeline-read-btn" type="button">Open Full Story 📖</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- STORY MODAL -->
+  <div id="storyModal" class="story-modal" role="dialog" aria-modal="true" aria-label="Memory story">
+    <div class="story-modal-card">
+      <button id="storyModalClose" class="story-modal-close" type="button" aria-label="Close story">×</button>
+      <div class="story-modal-img"><img id="storyModalImg" src="" alt="Story photo"></div>
+      <div id="storyModalDate" class="story-modal-date">Date</div>
+      <h3 id="storyModalTitle" class="story-modal-title">Title</h3>
+      <div id="storyModalBody" class="story-modal-body">Story text</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: 3D MEMORY CAROUSEL -->
+  <section class="memory-section">
+    <h2 class="section-title">Our Beautiful Memories</h2>
+    <p class="section-sub">a little gallery of the moments that made me fall for you over and over again 📸</p>
+    
+    <div class="memory-stage" id="memoryStage">
+      <button class="memory-nav prev" id="galleryPrev" type="button" aria-label="Previous photo">‹</button>
+      <div class="memory-card-3d" data-index="0"><img src="./assets/img_6.jpg" alt="Memory 1" loading="lazy"></div>
+      <div class="memory-card-3d" data-index="1"><img src="./assets/img_7.jpg" alt="Memory 2" loading="lazy"></div>
+      <div class="memory-card-3d" data-index="2"><img src="./assets/img_8.jpg" alt="Memory 3" loading="lazy"></div>
+      <div class="memory-card-3d" data-index="3"><img src="./assets/img_9.jpg" alt="Memory 4" loading="lazy"></div>
+      <div class="memory-card-3d" data-index="4"><img src="./assets/img_10.jpg" alt="Memory 5" loading="lazy"></div>
+      <div class="memory-card-3d" data-index="5"><img src="./assets/img_11.jpg" alt="Memory 6" loading="lazy"></div>
+      <div class="memory-card-3d" data-index="6"><img src="./assets/img_12.jpg" alt="Memory 7" loading="lazy"></div>
+      <button class="memory-nav next" id="galleryNext" type="button" aria-label="Next photo">›</button>
+    </div>
+
+    <div class="memory-thumbs" id="memoryThumbs">
+      <div class="memory-thumb active" data-index="0"><img src="./assets/img_6.jpg" alt="Thumb 1"></div>
+      <div class="memory-thumb" data-index="1"><img src="./assets/img_7.jpg" alt="Thumb 2"></div>
+      <div class="memory-thumb" data-index="2"><img src="./assets/img_8.jpg" alt="Thumb 3"></div>
+      <div class="memory-thumb" data-index="3"><img src="./assets/img_9.jpg" alt="Thumb 4"></div>
+      <div class="memory-thumb" data-index="4"><img src="./assets/img_10.jpg" alt="Thumb 5"></div>
+      <div class="memory-thumb" data-index="5"><img src="./assets/img_11.jpg" alt="Thumb 6"></div>
+      <div class="memory-thumb" data-index="6"><img src="./assets/img_12.jpg" alt="Thumb 7"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SURPRISES & QUESTIONS (CARDS GRID) -->
+  <section class="cards-section">
+    <h2 class="section-title">Surprises & Questions</h2>
+    <p class="section-sub">tap a card to open it — some are sweet, some are naughty, solve them all! 🕵️‍♀️💖</p>
+    
+    <div class="cards-grid" id="cardsGrid">
+
+      <!-- Card 01 (Riddle 1) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">01</div>
+            <div class="ribbon">👣</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Main tumhare paas aaun, tumhare kaan ke paas kuch sweet sa whisper karun aur tum blush kar do... main kya kar raha hoon? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 02 (Message 1) -->
+      <div class="card" data-type="note">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">note</div>
+            <div class="num">02</div>
+            <div class="ribbon">💌</div>
+            <div class="tap">tap to read</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>For starters</h3>
+            <p>Happiest Birthday, Shristuuu Every day with you feels shorter than the last — because time flies when I'm falling for you, over and over again. 💖</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 03 (Riddle 2) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">03</div>
+            <div class="ribbon">🔥</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Ek cheez hai jo lips se start hoti hai, 2 logon ke beech hoti hai aur birthday mood instantly romantic bana deti hai... kya hai? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 04 (Photo 1) -->
+      <div class="card" data-type="photo">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">photo</div>
+            <div class="num">04</div>
+            <div class="ribbon">📸</div>
+            <div class="tap">tap to view</div>
+          </div>
+          <div class="card-face card-back" style="padding:10px;">
+            <div class="card-photo-wrap"><img src="./assets/img_13.jpg" alt="Special memory" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 05 (Riddle 3) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">05</div>
+            <div class="ribbon">🥚</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Agar main tumhe tight hug karun aur tum 5 seconds ke baad bhi mujhe chhodna na chaho, problem kiski hai? 😌</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 06 (MCQ 1) -->
+      <div class="card" data-type="question">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">question</div>
+            <div class="num">06</div>
+            <div class="ribbon">🎈</div>
+            <div class="tap">tap to answer</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Think about it…</h3>
+            <p>What day is Shristi's birthday?</p>
+            <div class="quiz-options" data-correct="1" data-fb="Correct — and you should know, it's the whole reason this site exists 😄🎂">
+              <button type="button" data-idx="0">16 November</button>
+              <button type="button" data-idx="1">17 November</button>
+              <button type="button" data-idx="2">18 November</button>
+            </div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 07 (Riddle 4) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">07</div>
+            <div class="ribbon">🕶️</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Kaunsi cheez bedroom ki light off karne se zyada interesting ho jaati hai? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 08 (Message 2) -->
+      <div class="card" data-type="note">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">note</div>
+            <div class="num">08</div>
+            <div class="ribbon">✨</div>
+            <div class="tap">tap to read</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>What I love</h3>
+            <p>I love how you get so excited about the tiniest things ✨ and somehow make even the smallest moments feel so special 🥹💗. The way you find happiness in little things is honestly one of the cutest things about you 🫶🥰</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 09 (Photo 2) -->
+      <div class="card" data-type="photo">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">photo</div>
+            <div class="num">09</div>
+            <div class="ribbon">🌆</div>
+            <div class="tap">tap to view</div>
+          </div>
+          <div class="card-face card-back" style="padding:10px;">
+            <div class="card-photo-wrap"><img src="./assets/img_14.jpg" alt="Special memory" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 10 (Riddle 5) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">10</div>
+            <div class="ribbon">🔤</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Agar main tumse kahun 'idhar aao, ek secret batana hai', toh secretly main kya chahta ho sakta hoon? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 11 (MCQ 2) -->
+      <div class="card" data-type="question">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">question</div>
+            <div class="num">11</div>
+            <div class="ribbon">🌧️</div>
+            <div class="tap">tap to answer</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Think about it…</h3>
+            <p>Which of these is NOT something Shubham has done for you?</p>
+            <div class="quiz-options" data-correct="2" data-fb="Right. That one's never, ever going to happen. 🤍">
+              <button type="button" data-idx="0">Remembered your order</button>
+              <button type="button" data-idx="1">Waited in the rain for you</button>
+              <button type="button" data-idx="2">Given up on you</button>
+            </div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 12 (Riddle 6) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">12</div>
+            <div class="ribbon">🎂</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Birthday cake ke baad sabse sweet treat kya ho sakti hai, jo calories bhi count nahi hoti? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 13 (Message 3) -->
+      <div class="card" data-type="note">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">note</div>
+            <div class="num">13</div>
+            <div class="ribbon">🎁</div>
+            <div class="tap">tap to read</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>A promise</h3>
+            <p>I promise to always make you feel loved, to celebrate your little joys with you, and to turn even the smallest moments into beautiful memories together 🫶✨. No matter what, I’ll always choose you, hold your hand, and remind you how special you are to me ❤️🥹.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 14 (Photo 3) -->
+      <div class="card" data-type="photo">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">photo</div>
+            <div class="num">14</div>
+            <div class="ribbon">😄</div>
+            <div class="tap">tap to view</div>
+          </div>
+          <div class="card-face card-back" style="padding:10px;">
+            <div class="card-photo-wrap"><img src="./assets/img_15.jpg" alt="Special memory" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 15 (Riddle 7) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">15</div>
+            <div class="ribbon">📮</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Movie kaun si hai usse zyada important kya ho jaata hai jab hum dono ek blanket ke andar baithe hon? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 16 (Riddle 8) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">16</div>
+            <div class="ribbon">♾️</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Tum mujhe aise kaise dekh sakti ho ki bina touch kiye bhi mera heartbeat thoda fast ho jaaye? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 17 (MCQ 3) -->
+      <div class="card" data-type="question">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">question</div>
+            <div class="num">17</div>
+            <div class="ribbon">💭</div>
+            <div class="tap">tap to answer</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Think about it…</h3>
+            <p>Complete it: Shubham loves you…</p>
+            <div class="quiz-options" data-correct="2" data-fb="Exactly that. Every single day, a little more. 🌹">
+              <button type="button" data-idx="0">a little</button>
+              <button type="button" data-idx="1">a lot</button>
+              <button type="button" data-idx="2">more than yesterday, less than tomorrow</button>
+            </div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 18 (Message 4 - Restored) -->
+      <div class="card" data-type="note">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">note</div>
+            <div class="num">18</div>
+            <div class="ribbon">🙏</div>
+            <div class="tap">tap to read</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Thank you</h3>
+            <p>Thank you for putting up with me, for laughing at my bad jokes, and for being the softest, safest place I know. 🫶❤️</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 19 (Photo 4) -->
+      <div class="card" data-type="photo">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">photo</div>
+            <div class="num">19</div>
+            <div class="ribbon">🥹</div>
+            <div class="tap">tap to view</div>
+          </div>
+          <div class="card-face card-back" style="padding:10px;">
+            <div class="card-photo-wrap"><img src="./assets/img_16.jpg" alt="Special memory" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 20 (Riddle 9) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">20</div>
+            <div class="ribbon">⏰</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Agar main kahun 'sirf 2 minute cuddle', toh actual mein minimum kitna time lag sakta hai? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 21 (Riddle 10) -->
+      <div class="card" data-type="riddle">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">riddle</div>
+            <div class="num">21</div>
+            <div class="ribbon">📏</div>
+            <div class="tap">tap to solve</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Riddle 🧩</h3>
+            <p>Kaunsa answer main tumse sabse zyada sunna chahta hoon: 'miss you', 'come here', ya 'thoda aur paas aao'? 😏</p>
+            <div class="riddle-input-row">
+              <input type="text" placeholder="your naughty guess… 😏">
+              <button type="button">Guess</button>
+            </div>
+            <div class="riddle-actions">
+              <button class="riddle-hint-btn" type="button">💡 Hint</button>
+              <button class="riddle-reveal-btn" type="button">Reveal Answer</button>
+            </div>
+            <div class="riddle-hint"></div>
+            <div class="card-feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 22 (Photo 5) -->
+      <div class="card" data-type="photo">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">photo</div>
+            <div class="num">22</div>
+            <div class="ribbon">🔮</div>
+            <div class="tap">tap to view</div>
+          </div>
+          <div class="card-face card-back" style="padding:10px;">
+            <div class="card-photo-wrap"><img src="./assets/img_17.jpg" alt="Special memory" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 23 (Message 5) -->
+      <div class="card" data-type="note">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="kind-tag">note</div>
+            <div class="num">23</div>
+            <div class="ribbon">📱</div>
+            <div class="tap">tap to read</div>
+          </div>
+          <div class="card-face card-back">
+            <h3>Notification</h3>
+            <p>You are my favorite notification — the one I never mute, never swipe away, and always open first. 📱💖</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: LOVE LETTERS -->
+  <section class="letters-section">
+    <h2 class="section-title">Love Letters</h2>
+    <p class="section-sub">tap the wax seal to unseal each letter — written straight from my heart 💌</p>
+    
+    <div class="letters-grid">
+
+      <!-- Letter 1 -->
+      <div class="letter-wrap">
+        <div class="envelope" data-index="0">
+          <div class="envelope-flap"></div>
+          <div class="wax-seal">💌</div>
+          <div class="envelope-body"></div>
+          <div class="letter-paper">
+            <h4>To Shristi, on missing me</h4>
+            <p>Hey Shristuu 🥹💕,</p>
+            <p>I know sometimes you miss me a little too much 🤭🫂, so whenever that happens, just remember that I’m probably missing you too 🥹❤️. I wish I could magically appear right next to you and give you the biggest, warmest huggg 🤗🫂💕.</p>
+            <p>And until I can, just imagine me sitting beside you, irritating you a little 🤭, making you laugh, and giving you all the hugs you need 🫂🥹💗.</p>
+            <p>So don’t be too sad when you miss me, okay? 🥺 Just smile and remember that your person is always with you in one way or another 🫶❤️✨</p>
+            <p>Sending you the tightest virtual huggg everrr 🤗🫂💗🥹💕</p>
+            <div class="sign">— Shubham 🤍</div>
+          </div>
+        </div>
+        <div class="envelope-label">Open when you miss me</div>
+      </div>
+
+      <!-- Letter 2 -->
+      <div class="letter-wrap">
+        <div class="envelope" data-index="1">
+          <div class="envelope-flap"></div>
+          <div class="wax-seal">🎂</div>
+          <div class="envelope-body"></div>
+          <div class="letter-paper">
+            <h4>To Shristi, on your birthday</h4>
+            <p>Hey Kuchupuchu 🥹💕,</p>
+            <p>Today is all about celebrating the birthday of most beautiful person in my life 🥹❤️. I hope your day is filled with as much happiness, love, and smiles as you bring into my life every single day 🫶✨.</p>
+            <p>I’m so grateful that I get to celebrate your birthday 🥹💗. Thank you for being you, for all your cute little things, your excitement over the smallest moments, and for making even ordinary days feel so special 🫂💕.</p>
+            <p>On your birthday, I just want you to know how incredibly special you are to me ❤️🥹. I hope this year brings you everything your heart wishes for, and I hope I get to be there beside you through all your happiest moments 🤗🫂💗.</p>
+            <p>Happy Birthday, Shristuu 🎂🥹❤️🫂💕✨ My favourite person deserves the most beautiful birthday everrr 🤭💗🤗🫂</p>
+            <p>This year feels extra special to me because this is the year I met you 🥹❤️. I honestly didn’t know that someone could come into my life and become such an important part of it in such a short time 🫂💕. Out of all the things this year gave me, meeting you will always be my favourite 🤭💗✨. And I hope this is just the beginning of so many more beautiful birthdays, memories, laughs, hugs, and moments with you 🥹❤️🫂🎂✨</p>
+            <div class="sign">— Shubham 🤍</div>
+          </div>
+        </div>
+        <div class="envelope-label">Open on your birthday morning</div>
+      </div>
+
+      <!-- Letter 3 -->
+      <div class="letter-wrap">
+        <div class="envelope" data-index="2">
+          <div class="envelope-flap"></div>
+          <div class="wax-seal">🌹</div>
+          <div class="envelope-body"></div>
+          <div class="letter-paper">
+            <h4>To Shristi, How Beautiful she is</h4>
+            <p>Hey Dugggu mera 🥹💕,</p>
+            <p>Just a little reminder for you: you are so, so beautiful 🥹❤️. Not just when you dress up or when you smile, but even on your messy-hair, sleepy, bad-mood days 🤭🥹💕. There’s just something about you that makes everything feel prettier and warmer 🫶✨.</p>
+            <p>So whenever you’re feeling low, please remember that there’s someone who looks at you and thinks, “How did I get so lucky?” 🥹❤️🫂🤗💗✨</p>
+            <div class="sign">— Shubham 🤍</div>
+          </div>
+        </div>
+        <div class="envelope-label">Open whenever you need a smile</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINALE SECTION -->
+  <section class="finale" id="finale">
+    <h2>I love you, Shristi.</h2>
+    <p>Happy Birthday to the girl who made every ordinary day feel like a celebration. Here's to another year of us, and to many, many more birthdays spent making memories together. 🎂💗</p>
+    <button id="finaleBtn" type="button">Let it rain 🎉</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Made with all my heart by Shubham · Forever & Always 🤍
+  </footer>
+
+  <!-- UNIVERSAL LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+    <img id="lightboxImg" src="" alt="Enlarged view">
+  </div>
+
+  <script>
+    /* ================= ROMANTIC WEB AUDIO SYNTHESIZER ================= */
+    class RomanticAudio {
+      constructor() {
+        this.ctx = null;
+        this.isPlaying = false;
+        this.timer = null;
+        this.noteIndex = 0;
+      }
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+      playTone(freq, time, duration, gainVal = 0.12) {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, time);
+
+        // Gentle overtone
+        const osc2 = this.ctx.createOscillator();
+        const gain2 = this.ctx.createGain();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(freq * 2, time);
+
+        gain.gain.setValueAtTime(0.001, time);
+        gain.gain.exponentialRampToValueAtTime(gainVal, time + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+        gain2.gain.setValueAtTime(0.0005, time);
+        gain2.gain.exponentialRampToValueAtTime(gainVal * 0.3, time + 0.03);
+        gain2.gain.exponentialRampToValueAtTime(0.0001, time + duration * 0.7);
+
+        osc.connect(gain);
+        osc2.connect(gain2);
+        gain.connect(this.ctx.destination);
+        gain2.connect(this.ctx.destination);
+
+        osc.start(time);
+        osc2.start(time);
+        osc.stop(time + duration);
+        osc2.stop(time + duration);
+      }
+      playChime() {
+        this.init();
+        const now = this.ctx.currentTime;
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        notes.forEach((f, i) => this.playTone(f, now + i * 0.09, 0.9, 0.15));
+      }
+      playSparkle() {
+        this.init();
+        const now = this.ctx.currentTime;
+        const notes = [659.25, 783.99, 987.77, 1318.51];
+        notes.forEach((f, i) => this.playTone(f, now + i * 0.06, 0.5, 0.12));
+      }
+      startMelody() {
+        this.init();
+        if (this.isPlaying) return;
+        this.isPlaying = true;
+
+        // Gentle arpeggio progression: Cmaj7 -> Am7 -> Fmaj7 -> Gsus4
+        const chords = [
+          [261.63, 329.63, 392.00, 493.88], // C E G B
+          [220.00, 261.63, 329.63, 392.00], // A C E G
+          [174.61, 261.63, 329.63, 349.23], // F C E F
+          [196.00, 261.63, 293.66, 392.00]  // G C D G
+        ];
+        let chordIdx = 0;
+        let noteStep = 0;
+
+        const scheduleNotes = () => {
+          if (!this.isPlaying) return;
+          const now = this.ctx.currentTime;
+          const currentChord = chords[chordIdx];
+          const freq = currentChord[noteStep % currentChord.length];
+          this.playTone(freq, now, 1.2, 0.08);
+
+          // Occasional romantic high sparkle note
+          if (noteStep % 4 === 2) {
+            this.playTone(freq * 2, now + 0.25, 1.0, 0.04);
+          }
+
+          noteStep++;
+          if (noteStep >= 8) {
+            noteStep = 0;
+            chordIdx = (chordIdx + 1) % chords.length;
+          }
+          this.timer = setTimeout(scheduleNotes, 480);
+        };
+
+        scheduleNotes();
+      }
+      stopMelody() {
+        this.isPlaying = false;
+        if (this.timer) clearTimeout(this.timer);
+      }
+      toggle() {
+        if (this.isPlaying) {
+          this.stopMelody();
+          return false;
+        } else {
+          this.startMelody();
+          return true;
+        }
+      }
+    }
+
+    const romanticAudio = new RomanticAudio();
+    const musicBtn = document.getElementById('musicBtn');
+    musicBtn.addEventListener('click', () => {
+      const playing = romanticAudio.toggle();
+      musicBtn.classList.toggle('playing', playing);
+      musicBtn.title = playing ? 'Pause romantic music' : 'Play romantic music';
+    });
+
+    /* ================= AMBIENT BACKGROUND PARTICLES ================= */
+    const bgCanvas = document.getElementById('bg-canvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    function resizeBg() { bgCanvas.width = innerWidth; bgCanvas.height = innerHeight; }
+    resizeBg();
+    window.addEventListener('resize', resizeBg);
+
+    const ambientParticles = [];
+    for (let i = 0; i < 48; i++) {
+      ambientParticles.push({
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        r: Math.random() * 2.2 + 0.6,
+        speed: Math.random() * 0.4 + 0.15,
+        drift: Math.random() * 0.8 - 0.4,
+        glow: Math.random() * 0.5 + 0.3,
+        kind: Math.random() < 0.35 ? 'heart' : 'star'
+      });
+    }
+
+    function drawMiniHeart(ctx, x, y, size, alpha) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size / 10, size / 10);
+      ctx.beginPath();
+      ctx.moveTo(0, 3);
+      ctx.bezierCurveTo(0, 0, -5, 0, -5, -3);
+      ctx.bezierCurveTo(-5, -6, 0, -6, 0, -2);
+      ctx.bezierCurveTo(0, -6, 5, -6, 5, -3);
+      ctx.bezierCurveTo(5, 0, 0, 0, 0, 3);
+      ctx.closePath();
+      ctx.fillStyle = `rgba(232, 163, 171, ${alpha})`;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function animateBg() {
+      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      for (const p of ambientParticles) {
+        p.y -= p.speed;
+        p.x += Math.sin(p.y * 0.01) * p.drift * 0.3;
+        if (p.y < -20) {
+          p.y = innerHeight + 20;
+          p.x = Math.random() * innerWidth;
+        }
+        if (p.kind === 'heart') {
+          drawMiniHeart(bgCtx, p.x, p.y, p.r * 6, p.glow * 0.7);
+        } else {
+          bgCtx.beginPath();
+          bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          bgCtx.fillStyle = `rgba(240, 217, 168, ${p.glow})`;
+          bgCtx.shadowBlur = 8;
+          bgCtx.shadowColor = 'rgba(217,178,106,0.5)';
+          bgCtx.fill();
+        }
+      }
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
+
+    /* ================= CELEBRATION FX CANVAS (CONFETTI / BALLOONS / HEARTS) ================= */
+    const fxCanvas = document.getElementById('fx-canvas');
+    const fxCtx = fxCanvas.getContext('2d');
+    function resizeFx() { fxCanvas.width = innerWidth; fxCanvas.height = innerHeight; }
+    resizeFx();
+    window.addEventListener('resize', resizeFx);
+
+    const fxParticles = [];
+    const fxColors = ['#e8a3ab', '#d9b26a', '#f5cdd6', '#f0d9a8', '#c96b7a', '#ffffff', '#ff758c'];
+
+    function spawnBurst(x, y, count = 70) {
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 8 + 3;
+        fxParticles.push({
+          kind: Math.random() < 0.4 ? 'heart' : 'confetti',
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 2,
+          size: Math.random() * 10 + 6,
+          color: fxColors[Math.floor(Math.random() * fxColors.length)],
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 8,
+          alpha: 1,
+          decay: Math.random() * 0.012 + 0.008
+        });
+      }
+    }
+
+    function spawnBalloons(x, y, count = 12) {
+      for (let i = 0; i < count; i++) {
+        fxParticles.push({
+          kind: 'balloon',
+          x: x + (Math.random() - 0.5) * 160,
+          y,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: -(Math.random() * 2.5 + 2),
+          r: Math.random() * 14 + 18,
+          color: fxColors[Math.floor(Math.random() * fxColors.length)],
+          alpha: 1,
+          decay: 0.004
+        });
+      }
+    }
+
+    function animateFx() {
+      fxCtx.clearRect(0, 0, fxCanvas.width, fxCanvas.height);
+      for (let i = fxParticles.length - 1; i >= 0; i--) {
+        const p = fxParticles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= p.decay;
+
+        if (p.kind === 'balloon') {
+          p.x += Math.sin(p.y * 0.02) * 0.5;
+        } else {
+          p.vy += 0.16; // gravity
+          p.rotation += p.rotSpeed;
+        }
+
+        if (p.alpha <= 0 || p.y > innerHeight + 40) {
+          fxParticles.splice(i, 1);
+          continue;
+        }
+
+        fxCtx.save();
+        fxCtx.globalAlpha = Math.max(0, p.alpha);
+        fxCtx.translate(p.x, p.y);
+
+        if (p.kind === 'heart') {
+          fxCtx.rotate((p.rotation * Math.PI) / 180);
+          drawMiniHeart(fxCtx, 0, 0, p.size, 1);
+        } else if (p.kind === 'balloon') {
+          fxCtx.beginPath();
+          fxCtx.ellipse(0, 0, p.r * 0.75, p.r, 0, 0, Math.PI * 2);
+          fxCtx.fillStyle = p.color;
+          fxCtx.fill();
+          // string
+          fxCtx.beginPath();
+          fxCtx.moveTo(0, p.r);
+          fxCtx.lineTo(0, p.r + 20);
+          fxCtx.strokeStyle = 'rgba(255,255,255,0.4)';
+          fxCtx.stroke();
+        } else {
+          // confetti
+          fxCtx.rotate((p.rotation * Math.PI) / 180);
+          fxCtx.fillStyle = p.color;
+          fxCtx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+        }
+        fxCtx.restore();
+      }
+      requestAnimationFrame(animateFx);
+    }
+    animateFx();
+
+    /* ================= INTRO GIFT UNWRAP ================= */
+    const introOverlay = document.getElementById('intro-overlay');
+    const giftBox = document.getElementById('giftBox');
+    giftBox.addEventListener('click', () => {
+      giftBox.classList.add('opened');
+      spawnBurst(innerWidth / 2, innerHeight / 2, 90);
+      spawnBalloons(innerWidth / 2, innerHeight / 2, 16);
+      romanticAudio.playChime();
+      romanticAudio.startMelody();
+      musicBtn.classList.add('playing');
+
+      setTimeout(() => {
+        introOverlay.classList.add('closed');
+        document.body.classList.remove('locked');
+      }, 650);
+    });
+
+    /* ================= COUNTDOWN & LIVE BIRTHDAY CELEBRATION ================= */
+    const targetDate = new Date('2026-11-17T00:00:00');
+    const countdownEl = document.getElementById('countdown');
+    const captionEl = document.getElementById('countdownCaption');
+    const birthdayBanner = document.getElementById('birthdayBanner');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      // Check if today is 17 November or if target is reached
+      const isNov17OrLater = (now.getFullYear() === 2026 && now.getMonth() === 10 && now.getDate() >= 17) || diff <= 0;
+
+      if (isNov17OrLater) {
+        countdownEl.style.display = 'none';
+        captionEl.style.display = 'none';
+        birthdayBanner.style.display = 'block';
+      } else {
+        countdownEl.style.display = 'flex';
+        captionEl.style.display = 'block';
+        birthdayBanner.style.display = 'none';
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('d').textContent = String(d).padStart(2, '0');
+        document.getElementById('h').textContent = String(h).padStart(2, '0');
+        document.getElementById('m').textContent = String(m).padStart(2, '0');
+        document.getElementById('s').textContent = String(s).padStart(2, '0');
+      }
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    document.getElementById('burstBirthdayBtn')?.addEventListener('click', (e) => {
+      const rect = e.target.getBoundingClientRect();
+      spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 100);
+      spawnBalloons(rect.left + rect.width / 2, rect.top, 20);
+      romanticAudio.playChime();
+    });
+
+    /* ================= TIMELINE & STORY MODAL ================= */
+    const timelineData = [
+      {
+        date: "The Day It Started",
+        title: "Our Beautiful Story Began 🤍✨",
+        story: "From our first day to our first kiss, every little moment felt like the beginning of something beautifully ours 🤍✨\n\nMeeting you changed everything for me. It’s crazy how one person can walk into your world and instantly make it warmer, happier, and so much brighter.",
+        img: "./assets/img_2.jpg"
+      },
+      {
+        date: "From Sober to That Kiss",
+        title: "Sober, Kissed & Unforgettable 😭😘❤️",
+        story: "You getting sober in front of me for the first time was already an experience 😂❤️\n\nBut that kiss in the auto after that? Damn… what an experience 😭😘 I definitely want more cute, crazy, unforgettable moments with you 🥹❤️✨",
+        img: "./assets/img_3.jpg"
+      },
+      {
+        date: "Somewhere We Went",
+        title: "Our First Hotel Experience 🥹❤️✨",
+        story: "You taking care of my skincare was already such a sweet little moment 🥹❤️\n\nAnd our first hotel experience? Honestly, it was absolutely amazing 😭✨ Something I know I’ll never forget. Everything we did and every moment we shared there made it so special 🫶🥰 What a beautiful and unforgettable experience it was! ❤️✨",
+        img: "./assets/img_4.jpg"
+      },
+      {
+        date: "Made Special by Your Hands",
+        title: "My First Sushi & Dimsum 🍣🥟",
+        story: "My first sushi and my first dimsum were already such an amazing experience 🥹🥟🍣\n\nBut you made them even more special by feeding me with your own hands 😭❤️ Honestly, being fed by you is one of my favorite things ever 🫶✨ It was my first time trying them, and you made the whole moment so cute and unforgettable… aaye hayeee 🥹💕",
+        img: "./assets/img_5.jpg"
+      },
+      {
+        date: "Right Now & Always",
+        title: "Today: Still Choosing You 🌹💖",
+        story: "Right now, is exact pal mein, bas ek hi cheez dil mein hai, tum. 🥹 Pata nahi kaise, but tumhare saath har din pichle din se zyada beautiful lagta hai. Tumhari hasi, tumhari chhoti-chhoti baatein, aur wo random moments jahan hum bas saath hote hain, wahi meri favourite jagah ban gayi hai. 🌷\n\nHumne already itni pyaari yaadein banayi hain, but phir bhi mujhe un yaadon ka sabse zyada wait hai jo hum abhi banane wale hain. ✨ Duniya kitni bhi busy ho jaye, mera dil hamesha tumhare paas hi wapas aata hai. 💞\n\nStill choosing you. Still excited for us. Aaj bhi, kal bhi, hamesha. 🌹💖",
+        img: "./assets/img_1.jpg"
+      }
+    ];
+
+    const storyModal = document.getElementById('storyModal');
+    const storyModalImg = document.getElementById('storyModalImg');
+    const storyModalDate = document.getElementById('storyModalDate');
+    const storyModalTitle = document.getElementById('storyModalTitle');
+    const storyModalBody = document.getElementById('storyModalBody');
+    const storyModalClose = document.getElementById('storyModalClose');
+
+    function openStoryModal(idx) {
+      const d = timelineData[idx];
+      if (!d) return;
+      storyModalImg.src = d.img;
+      storyModalDate.textContent = d.date;
+      storyModalTitle.textContent = d.title;
+      storyModalBody.textContent = d.story;
+      storyModal.classList.add('open');
+      romanticAudio.playSparkle();
+    }
+
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const idx = Number(item.dataset.index);
+        openStoryModal(idx);
+      });
+    });
+
+    storyModalClose.addEventListener('click', () => storyModal.classList.remove('open'));
+    storyModal.addEventListener('click', (e) => {
+      if (e.target === storyModal) storyModal.classList.remove('open');
+    });
+
+    /* ================= 3D MEMORY CAROUSEL ================= */
+    const galleryCards = Array.from(document.querySelectorAll('.memory-card-3d'));
+    const galleryThumbs = Array.from(document.querySelectorAll('.memory-thumb'));
+    let activeGallery = 1;
+    let galleryInterval = null;
+
+    function updateGallery(idx) {
+      activeGallery = (idx + galleryCards.length) % galleryCards.length;
+      const count = galleryCards.length;
+
+      galleryCards.forEach((card, i) => {
+        let diff = i - activeGallery;
+        if (diff > count / 2) diff -= count;
+        if (diff < -count / 2) diff += count;
+
+        if (diff === 0) {
+          card.style.transform = 'translate3d(0, 0, 80px) rotateY(0deg) scale(1)';
+          card.style.opacity = '1';
+          card.style.zIndex = '10';
+          card.dataset.active = 'true';
+        } else if (diff === 1) {
+          card.style.transform = 'translate3d(180px, 0, -40px) rotateY(-20deg) scale(0.88)';
+          card.style.opacity = '0.75';
+          card.style.zIndex = '5';
+          card.dataset.active = 'false';
+        } else if (diff === -1) {
+          card.style.transform = 'translate3d(-180px, 0, -40px) rotateY(20deg) scale(0.88)';
+          card.style.opacity = '0.75';
+          card.style.zIndex = '5';
+          card.dataset.active = 'false';
+        } else if (diff === 2) {
+          card.style.transform = 'translate3d(320px, 0, -120px) rotateY(-35deg) scale(0.72)';
+          card.style.opacity = '0.4';
+          card.style.zIndex = '2';
+          card.dataset.active = 'false';
+        } else if (diff === -2) {
+          card.style.transform = 'translate3d(-320px, 0, -120px) rotateY(35deg) scale(0.72)';
+          card.style.opacity = '0.4';
+          card.style.zIndex = '2';
+          card.dataset.active = 'false';
+        } else {
+          card.style.transform = 'translate3d(0, 0, -200px) scale(0.5)';
+          card.style.opacity = '0';
+          card.style.zIndex = '0';
+          card.dataset.active = 'false';
+        }
+      });
+
+      galleryThumbs.forEach((th, i) => {
+        th.classList.toggle('active', i === activeGallery);
+      });
+    }
+
+    document.getElementById('galleryPrev').addEventListener('click', () => {
+      updateGallery(activeGallery - 1);
+      resetAutoSlide();
+    });
+    document.getElementById('galleryNext').addEventListener('click', () => {
+      updateGallery(activeGallery + 1);
+      resetAutoSlide();
+    });
+
+    galleryThumbs.forEach((th, i) => {
+      th.addEventListener('click', () => {
+        updateGallery(i);
+        resetAutoSlide();
+      });
+    });
+
+    function resetAutoSlide() {
+      if (galleryInterval) clearInterval(galleryInterval);
+      galleryInterval = setInterval(() => updateGallery(activeGallery + 1), 3800);
+    }
+    updateGallery(1);
+    resetAutoSlide();
+
+    // Pause on hover
+    const stage = document.getElementById('memoryStage');
+    stage.addEventListener('mouseenter', () => clearInterval(galleryInterval));
+    stage.addEventListener('mouseleave', resetAutoSlide);
+
+    /* ================= CARDS: RIDDLES, QUIZZES, FLIPS ================= */
+    const riddleDatabase = [
+      {
+        answers: ["flirting", "flirt", "flirt kar raha hoon", "teasing", "tease"],
+        hint1: "Thoda romantic...",
+        hint2: "Tumhe blush karwana mera favourite hobby hai 😌",
+        feedback: "Correct 😏 Tumhare blush ka reason banna mujhe bahut pasand hai."
+      },
+      {
+        answers: ["kiss", "kissing", "chumma", "pappi"],
+        hint1: "Lips involved hain 👀",
+        hint2: "Bas itna samajh lo... birthday wish thodi extra special ho sakti hai 😏",
+        feedback: "Correct 😘 Ek answer ke liye tum itna confidently kaise prepare ho? 😏"
+      },
+      {
+        answers: ["meri", "tumhari", "dono", "ham dono", "hum dono"],
+        hint1: "Blame game mat khelna 😏",
+        hint2: "Answer usually 'chhodna hi kyun hai?' type hota hai 🫣",
+        feedback: "Awww 😌 Clearly hug quota unlimited hai."
+      },
+      {
+        answers: ["romance", "romantic mood", "romance ka mood", "cuddling", "cuddle"],
+        hint1: "Naughty mat socho... ya shayad thoda socho 😏",
+        hint2: "Mood kaafi important hota hai 🔥",
+        feedback: "Hehe 😏 Tumhara dimaag bhi kaafi interesting direction mein jaata hai."
+      },
+      {
+        answers: ["kiss", "kissing", "hug", "cuddle", "cuddling", "flirt"],
+        hint1: "Secret bahana ho sakta hai 👀",
+        hint2: "Distance zero karne wali activity socho 😌",
+        feedback: "Caught you 😏 Secret se zyada tum important ho."
+      },
+      {
+        answers: ["kiss", "kissing", "chumma", "pappi", "hug", "cuddle"],
+        hint1: "Chocolate nahi hai 😌",
+        hint2: "Iska taste shayad explain karna mushkil hai 😏",
+        feedback: "Correct 😘 Birthday special treat unlocked."
+      },
+      {
+        answers: ["cuddling", "cuddle", "cuddle karna", "romance", "snuggling", "snuggle"],
+        hint1: "Movie chal bhi rahi ho aur attention kahin aur ho 👀",
+        hint2: "Blanket sharing ka main reason socho 😌",
+        feedback: "Exactly 😏 Movie pause ho bhi jaaye toh complaint nahi hogi."
+      },
+      {
+        answers: ["stare", "ghoorna", "look", "naughty look", "romantic look", "aankhon se"],
+        hint1: "Hands-free magic 👀",
+        hint2: "Tumhari aankhein kaafi dangerous hain 😏",
+        feedback: "Correct 😌 Tumhari ek look kaafi hai."
+      },
+      {
+        answers: ["forever", "hamesha", "bahut zyada", "unlimited", "all night", "pata nahi"],
+        hint1: "2 minute is just an excuse 😌",
+        hint2: "Time ke saath feelings bhi extend hoti hain 🫶",
+        feedback: "Bilkul 😏 2 minute se shuru, chhodne ka mann kabhi na ho."
+      },
+      {
+        answers: ["thoda aur paas aao", "paas aao", "come here", "idhar aao", "sab", "all"],
+        hint1: "Distance kam karne wala answer 👀",
+        hint2: "Naughty version: personal space temporarily unavailable 😏",
+        feedback: "Hehe 😏 Ab tum mujhe kaafi achhe se jaanti ho."
+      }
+    ];
+
+    let riddleCounter = 0;
+    document.querySelectorAll('.card').forEach(card => {
+      const type = card.dataset.type;
+
+      // Card flipping
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('input, button')) return;
+        card.classList.toggle('open');
+        romanticAudio.playSparkle();
+      });
+
+      // Riddle setup
+      if (type === 'riddle') {
+        const rIndex = riddleCounter++;
+        const rData = riddleDatabase[rIndex];
+        const input = card.querySelector('input');
+        const btn = card.querySelector('.riddle-input-row button');
+        const hintBtn = card.querySelector('.riddle-hint-btn');
+        const revealBtn = card.querySelector('.riddle-reveal-btn');
+        const hintDiv = card.querySelector('.riddle-hint');
+        const feedbackDiv = card.querySelector('.card-feedback');
+        let hintStep = 0;
+
+        const checkGuess = () => {
+          const val = input.value.trim().toLowerCase();
+          if (!val) return;
+          const isCorrect = rData.answers.some(a => val.includes(a.toLowerCase()));
+
+          if (isCorrect) {
+            feedbackDiv.textContent = rData.feedback;
+            feedbackDiv.classList.add('show');
+            hintDiv.textContent = '';
+            input.disabled = true;
+            btn.disabled = true;
+            card.style.borderColor = 'var(--gold)';
+            const r = card.getBoundingClientRect();
+            spawnBurst(r.left + r.width / 2, r.top + r.height / 2, 40);
+            romanticAudio.playChime();
+          } else {
+            feedbackDiv.textContent = "Almost there… socho socho 😏";
+            feedbackDiv.classList.add('show');
+            setTimeout(() => feedbackDiv.classList.remove('show'), 2000);
+          }
+        };
+
+        btn.addEventListener('click', checkGuess);
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkGuess(); });
+
+        hintBtn.addEventListener('click', () => {
+          hintStep = (hintStep % 2) + 1;
+          hintDiv.textContent = hintStep === 1 ? `Hint 1: ${rData.hint1}` : `Hint 2: ${rData.hint2}`;
+        });
+
+        revealBtn.addEventListener('click', () => {
+          input.value = rData.answers[0];
+          checkGuess();
+        });
+      }
+
+      // MCQ setup
+      if (type === 'question') {
+        const container = card.querySelector('.quiz-options');
+        const correctIdx = Number(container.dataset.correct);
+        const fbText = container.dataset.fb;
+        const feedbackDiv = card.querySelector('.card-feedback');
+
+        container.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const chosen = Number(btn.dataset.idx);
+            if (chosen === correctIdx) {
+              btn.classList.add('correct');
+              feedbackDiv.textContent = fbText;
+              feedbackDiv.classList.add('show');
+              const r = card.getBoundingClientRect();
+              spawnBurst(r.left + r.width / 2, r.top + r.height / 2, 45);
+              romanticAudio.playChime();
+              container.querySelectorAll('button').forEach(b => b.disabled = true);
+            } else {
+              btn.style.borderColor = 'var(--rose-deep)';
+              btn.style.animation = 'shake 0.35s ease';
+              setTimeout(() => btn.style.animation = '', 400);
+            }
+          });
+        });
+      }
+    });
+
+    /* ================= LOVE LETTERS (ENVELOPES) ================= */
+    document.querySelectorAll('.envelope').forEach(env => {
+      env.addEventListener('click', (e) => {
+        if (e.target.closest('.letter-paper') && env.classList.contains('open')) return;
+        const willOpen = !env.classList.contains('open');
+        env.classList.toggle('open');
+        if (willOpen) {
+          const rect = env.getBoundingClientRect();
+          spawnBurst(rect.left + rect.width / 2, rect.top + 40, 50);
+          romanticAudio.playChime();
+        }
+      });
+    });
+
+    /* ================= FINALE BUTTON ================= */
+    document.getElementById('finaleBtn').addEventListener('click', (e) => {
+      const r = e.target.getBoundingClientRect();
+      spawnBurst(r.left + r.width / 2, r.top, 120);
+      spawnBalloons(innerWidth / 2, innerHeight * 0.7, 24);
+      romanticAudio.playChime();
+    });
+
+    /* ================= UNIVERSAL LIGHTBOX ================= */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.classList.add('open');
+    }
+
+    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    document.querySelectorAll('.memory-card-3d img, .card-photo-wrap img').forEach(img => {
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(img.src);
+      });
+    });
+
+    // Keyboard ESC listener
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('open');
+        storyModal.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
